@@ -1,0 +1,39 @@
+<ion-view title="Venue">
+  <ion-content class="has-header">
+<div class="list card">
+  <div class="item item-avatar">
+    <img src="{{image1}}">
+    <h2>{{venue.name}}</h2>
+    <p>{{venue.location.formattedAddress[0]}} {{venue.location.formattedAddress[1]}}</p>
+  </div>
+
+  <div class="item item-body">
+    <img class="full-image" src="{{image2}}">
+    <p>
+      {{venue.description}}
+    </p>
+    <p>
+      <a href="" class="subdued">{{venue.likes.summary}}</a>
+      <a href="" class="subdued">{{venue.stats.checkinsCount}} Checkins</a>
+    </p>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" href="">
+      <i class="icon ion-thumbsup"></i>
+      Like
+    </a>
+    <a class="tab-item" href="">
+      <i class="icon ion-chatbox"></i>
+      Comment
+    </a>
+    <a class="tab-item" href="">
+      <i class="icon ion-share"></i>
+      Share
+    </a>
+  </div>
+
+</div>
+
+  </ion-content>
+</ion-view>

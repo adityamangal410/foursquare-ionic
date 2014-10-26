@@ -1,0 +1,16 @@
+<ion-view title="Venues">
+  
+  <ion-content class="has-header">
+    
+    <div class="list">
+
+        <a ng-repeat="venue in venues" 
+           href="#/app/venues/venue/{{venue.id}}"
+           class="item">
+          <h2>{{ venue.name }}</h2>
+          <h4>{{venue.location.formattedAddress[0]}} {{venue.location.formattedAddress[1]}}</h4>
+        </a>
+
+      </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+<ion-view title="Venues">
+  
+  <ion-content class="has-header">
+  <input type="search" placeholder="filter..." ng-model="search" ng-focus="searchFocused = true" ng-blur="searchFocused = false">
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="list">
+        <a ng-repeat="venue in venues | filter: search | orderBy:'-stats.checkinsCount'" 
+           href="#/app/venues/venue/{{venue.id}}"
+           class="item">
+          <h2>{{ venue.name }}</h2>
+          <h4>{{venue.location.formattedAddress[0]}} {{venue.location.formattedAddress[1]}}</h4>
+        </a>
+
+      </div>
+  </ion-content>
+</ion-view>
