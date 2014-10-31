@@ -3,13 +3,16 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 })
 
-.controller('VenuesCtrl', function($scope, $stateParams, $http) {
+.controller('CurrentVenuesCtrl', function($scope, $http) {
 
   $scope.venues = [];
 
   var CLIENT_ID = "W2DSL0SO3R5TG2VZG5A2A20I3LJEGZZR2OCRH0KIDXHKX04X";
   var CLIENT_SECRET = "1BNQUYNUASFOJ34BCLROWAW1KH5SU4FB0XSPAJHBYTEEMR3O";
   var CATEGORY_ID = "4bf58dd8d48988d10f941735";
+  var radius = "3000";
+  var intent = "browse";
+  var ll;
   
   var today = new Date();
   var dd = today.getDate();
@@ -26,12 +29,80 @@ angular.module('starter.controllers', [])
 
   today = ''+yyyy+mm+dd;
 
+var onSuccess = function(position) {
+    ll = position.coords.latitude + ',' + position.coords.longitude;
+    var foursquareUrl = 'https://api.foursquare.com/v2/venues/search?ll=' + ll + '&radius=' + radius + '&intent=' + intent + '&categoryId=' + CATEGORY_ID + '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=' + today;
+    console.log(foursquareUrl);
+    $http
+        .get(foursquareUrl, {cache: true})
+        .then(function(response){
+          console.log(response);
+          $scope.venues = response.data.response.venues;
+        });
+};
+
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+
+navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+
+  
+
+        $scope.doRefresh = function() {
+          navigator.geolocation.getCurrentPosition(onSuccess, onError);
+          $scope.$broadcast('scroll.refreshComplete');
+        }
+  
+})
+
+.controller('VenuesCtrl', function($scope, $stateParams, $http) {
+
+  $scope.venues = [];
+
+  var CLIENT_ID = "W2DSL0SO3R5TG2VZG5A2A20I3LJEGZZR2OCRH0KIDXHKX04X";
+  var CLIENT_SECRET = "1BNQUYNUASFOJ34BCLROWAW1KH5SU4FB0XSPAJHBYTEEMR3O";
+  var CATEGORY_ID = "4bf58dd8d48988d10f941735";
+  var radius = "3000";
+  var intent = "browse";
+  
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd='0'+dd
+  } 
+
+  if(mm<10) {
+      mm='0'+mm
+  } 
+
+  today = ''+yyyy+mm+dd;
+
+  var foursquareUrl = 'https://api.foursquare.com/v2/venues/search?near=' + $stateParams.location + '&radius=' + radius + '&intent=' + intent + '&categoryId=' + CATEGORY_ID + '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=' + today;
+
   $http
-        .get('https://api.foursquare.com/v2/venues/search?near=' + $stateParams.location + '&categoryId=' + CATEGORY_ID + '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=' + today, {cache: true})
+        .get(foursquareUrl, {cache: true})
         .then(function(response){
           // console.log(response);
           $scope.venues = response.data.response.venues;
         });
+
+        $scope.doRefresh = function() {
+          $http
+            .get('https://api.foursquare.com/v2/venues/search?near=' + $stateParams.location + '&radius=' + radius + '&intent=' + intent + '&categoryId=' + CATEGORY_ID + '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=' + today, {cache: true})
+            .then(function(response) {
+                // console.log(response);
+                $scope.venues = response.data.response.venues;
+              })
+              .finally(function() {
+                $scope.$broadcast('scroll.refreshComplete')
+              })
+        }
   
 })
 
@@ -56,8 +127,11 @@ angular.module('starter.controllers', [])
   } 
 
   today = ''+yyyy+mm+dd;
+
+  var foursquareUrl = 'https://api.foursquare.com/v2/venues/' + $stateParams.venueId + '?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=' + today;
+
   $http
-        .get('https://api.foursquare.com/v2/venues/' + $stateParams.venueId + '?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=' + today, {cache: true})
+        .get(foursquareUrl, {cache: true})
         .then(function(response){
           // console.log(response);
           $scope.venue = response.data.response.venue;

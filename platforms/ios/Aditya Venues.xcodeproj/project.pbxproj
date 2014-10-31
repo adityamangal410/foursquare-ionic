@@ -42,6 +42,7 @@
 		79078F14C99744209B58EB29 /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 72377F6ADF974858BB8FCF83 /* UIWebViewExtension.m */; };
 		AEAC9CADD111462D9440C0AF /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0047DF977643A29B60E366 /* CDVLogger.m */; };
 		4343BD9C604048E6BE3885AB /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = B72BD00E1E884B848F8E1144 /* CDVDevice.m */; };
+		B2F5B2F457A948A68D0C2426 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A14FD728264CE685870F55 /* CDVLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,8 @@
 		CD31B3DDA2494CF0B8FD33C7 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		B72BD00E1E884B848F8E1144 /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		483A559C5AD94F29B9A87E08 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		11A14FD728264CE685870F55 /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "org.apache.cordova.geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		45408711331A4EC6AAFF5EA6 /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "org.apache.cordova.geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +245,8 @@
 				CD31B3DDA2494CF0B8FD33C7 /* CDVLogger.h */,
 				B72BD00E1E884B848F8E1144 /* CDVDevice.m */,
 				483A559C5AD94F29B9A87E08 /* CDVDevice.h */,
+				11A14FD728264CE685870F55 /* CDVLocation.m */,
+				45408711331A4EC6AAFF5EA6 /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = "Aditya Venues/Plugins";
@@ -440,6 +445,7 @@
 				79078F14C99744209B58EB29 /* UIWebViewExtension.m in Sources */,
 				AEAC9CADD111462D9440C0AF /* CDVLogger.m in Sources */,
 				4343BD9C604048E6BE3885AB /* CDVDevice.m in Sources */,
+				B2F5B2F457A948A68D0C2426 /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
